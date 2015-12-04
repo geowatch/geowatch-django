@@ -33,7 +33,7 @@ def print_settings(general, kafka, kinesis):
         print key+": "+str(kinesis[key])
 
 
-def provision_client():
+def provision_geowatch_client():
     settings_general = load_settings_general()
     settings_kafka = load_settings_kafka()
     settings_kinesis = load_settings_kinesis()
