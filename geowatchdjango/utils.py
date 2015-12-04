@@ -58,7 +58,6 @@ def provision_geowatch_consumer(topic, codec, max_tries=12, sleep_period=5, verb
 
     client, consumer = None, None
     kwargs = {
-        'backend': settings_general['backend'],
         'topic': topic,
         'codec': codec,
         'topic_prefix': settings_general['topic_prefix'],
