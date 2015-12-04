@@ -76,7 +76,7 @@ def provision_geowatch_consumer(topic, codec, max_tries=12, sleep_period=5, verb
     return (client, consumer)
 
 
-def provision_geowatch_producer(topic, codec, max_tries=12, sleep_period=5, verbose=True):
+def provision_geowatch_producer(topic, codec, client=None, max_tries=12, sleep_period=5, verbose=True):
     settings_general = load_settings_general()
     settings_kafka = load_settings_kafka()
     settings_kinesis = load_settings_kinesis()
@@ -86,18 +86,22 @@ def provision_geowatch_producer(topic, codec, max_tries=12, sleep_period=5, verb
     kwargs = {
         'topic': topic,
         'codec': codec,
+        'client': client,
         'topic_prefix': settings_general['topic_prefix'],
         'max_tries': max_tries,
         'sleep_period': sleep_period
     }
 
-    if settings_general['backend'] == "kafka":
-        kwargs['host'] = settings_kafka['host']
+    if client:
         client, producer = provision_producer(settings_general['backend'], ** kwargs)
-    elif settings_general['backend'] == "kinesis":
-        kwargs['aws_region'] = settings_kinesis['aws_region']
-        kwargs['aws_access_key_id'] = settings_kinesis['aws_access_key_id']
-        kwargs['aws_secret_access_key'] = settings_kinesis['aws_secret_access_key']
-        client, producer = provision_producer(settings_general['backend'], ** kwargs)
+    else:
+        if settings_general['backend'] == "kafka":
+            kwargs['host'] = settings_kafka['host']
+            client, producer = provision_producer(settings_general['backend'], ** kwargs)
+        elif settings_general['backend'] == "kinesis":
+            kwargs['aws_region'] = settings_kinesis['aws_region']
+            kwargs['aws_access_key_id'] = settings_kinesis['aws_access_key_id']
+            kwargs['aws_secret_access_key'] = settings_kinesis['aws_secret_access_key']
+            client, producer = provision_producer(settings_general['backend'], ** kwargs)
 
     return (client, producer)
