@@ -58,6 +58,7 @@ def provision_geowatch_consumer(topic, codec, max_tries=12, sleep_period=5, verb
 
     client, consumer = None, None
     kwargs = {
+        'backend': settings_general['backend'],
         'topic': topic,
         'codec': codec,
         'topic_prefix': settings_general['topic_prefix'],
@@ -66,12 +67,12 @@ def provision_geowatch_consumer(topic, codec, max_tries=12, sleep_period=5, verb
     }
     if settings_general['backend'] == "kafka":
         kwargs['host'] = settings_kafka['host']
-        client, consumer = provision_consumer_kafka(settings_general['backend'], ** kwargs)
+        client, consumer = provision_consumer_kafka(** kwargs)
     elif settings_general['backend'] == "kinesis":
         kwargs['aws_region'] = settings_kinesis['aws_region']
         kwargs['aws_access_key_id'] = settings_kinesis['aws_access_key_id']
         kwargs['aws_secret_access_key'] = settings_kinesis['aws_secret_access_key']
-        client, consumer = provision_consumer_kinesis(settings_general['backend'], **kwargs)
+        client, consumer = provision_consumer_kinesis(** kwargs)
 
     return (client, consumer)
 
