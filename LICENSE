@@ -1,41 +1,3 @@
-GeoWatch Django App (geowatch-django)
-================
-
-## Description
-
-Django app for integration of GeoWatch
-
-## Installation
-
-TBD
-
-## Usage
-
-Add the following to INSTALLED_APPS in settings.py:
-
-```
-'geowatchdjango'
-```
-
-Also, include the following new variables in settings.py:
-
-```
-AWS_ACCESS_KEY_ID = ""  # Used by AWS Kinesis
-AWS_SECRET_ACCESS_KEY = ""  # Used by AWS Kinesis
-
-GEOWATCH_ENABLED = True  # or False
-GEOWATCH_STREAMING_BACKEND = "kinesis"  # or "kafka"
-GEOWATCH_TOPIC_PREFIX= "geowatch-"  # Assigned to GeoWatch Client and prefixs all topics sent to server
-GEOWATCH_KINESIS_REGION = "us-east-1"  # Used by AWS Kinesis
-GEOWATCH_HOST = "localhost:9092"  # Used by Apache Kafka
-```
-
-## Contributing
-
-We are currently accepting pull requests for this repository. Please provide a human-readable description with a pull request and update the README.md file as needed.
-
-## License
-
 Copyright (c) 2015, Patrick Dufour
 All rights reserved.
 
@@ -49,7 +11,7 @@ modification, are permitted provided that the following conditions are met:
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
 
-* Neither the name of geowatch-django nor the names of its
+* Neither the name of geonode-fabric nor the names of its
   contributors may be used to endorse or promote products derived from
   this software without specific prior written permission.
 
