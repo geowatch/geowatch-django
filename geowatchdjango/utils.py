@@ -92,7 +92,6 @@ def provision_geowatch_producer(topic, codec, client=None, max_tries=12, sleep_p
         'topic': topic,
         'codec': codec,
         'client': client,
-        'topic_prefix': settings_general['topic_prefix'],
         'max_tries': max_tries,
         'sleep_period': sleep_period
     }
@@ -100,6 +99,7 @@ def provision_geowatch_producer(topic, codec, client=None, max_tries=12, sleep_p
     if client:
         client, producer = provision_producer(settings_general['backend'], ** kwargs)
     else:
+        kwargs['topic_prefix'] = settings_general['topic_prefix']
         if settings_general['backend'] == "kafka":
             settings_kafka = load_settings_kafka()
             kwargs['host'] = settings_kafka['host']
