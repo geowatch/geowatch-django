@@ -51,7 +51,7 @@ def provision_geowatch_client(verbose=False):
     return client
 
 
-def provision_geowatch_consumer(topic, codec, max_tries=12, sleep_period=5, verbose=False):
+def provision_geowatch_consumer(topic, codec, max_tries=12, sleep_period=5, topic_check=False, verbose=False):
     settings_general = load_settings_general()
     if verbose:
         settings_kafka = load_settings_kafka()
@@ -61,6 +61,7 @@ def provision_geowatch_consumer(topic, codec, max_tries=12, sleep_period=5, verb
     client, consumer = None, None
     kwargs = {
         'topic': topic,
+        'topic_check': topic_check,
         'codec': codec,
         'topic_prefix': settings_general['topic_prefix'],
         'max_tries': max_tries,
@@ -80,7 +81,7 @@ def provision_geowatch_consumer(topic, codec, max_tries=12, sleep_period=5, verb
     return (client, consumer)
 
 
-def provision_geowatch_producer(topic, codec, client=None, max_tries=12, sleep_period=5, verbose=False):
+def provision_geowatch_producer(topic, codec, client=None, max_tries=12, sleep_period=5, topic_check=False, verbose=False):
     settings_general = load_settings_general()
     if verbose:
         settings_kafka = load_settings_kafka()
@@ -90,6 +91,7 @@ def provision_geowatch_producer(topic, codec, client=None, max_tries=12, sleep_p
     client, producer = None, None
     kwargs = {
         'topic': topic,
+        'topic_check': topic_check,
         'codec': codec,
         'client': client,
         'max_tries': max_tries,
