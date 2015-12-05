@@ -33,11 +33,12 @@ def print_settings(general, kafka, kinesis):
         print key+": "+str(kinesis[key])
 
 
-def provision_geowatch_client():
+def provision_geowatch_client(verbose=False):
     settings_general = load_settings_general()
-    settings_kafka = load_settings_kafka()
-    settings_kinesis = load_settings_kinesis()
-    print_settings(settings_general, settings_kafka, settings_kinesis)
+    if verbose:
+        settings_kafka = load_settings_kafka()
+        settings_kinesis = load_settings_kinesis()
+        print_settings(settings_general, settings_kafka, settings_kinesis)
 
     client = None
     if settings_general['backend'] == "kafka":
@@ -50,11 +51,12 @@ def provision_geowatch_client():
     return client
 
 
-def provision_geowatch_consumer(topic, codec, max_tries=12, sleep_period=5, verbose=True):
+def provision_geowatch_consumer(topic, codec, max_tries=12, sleep_period=5, verbose=False):
     settings_general = load_settings_general()
-    settings_kafka = load_settings_kafka()
-    settings_kinesis = load_settings_kinesis()
-    print_settings(settings_general, settings_kafka, settings_kinesis)
+    if verbose:
+        settings_kafka = load_settings_kafka()
+        settings_kinesis = load_settings_kinesis()
+        print_settings(settings_general, settings_kafka, settings_kinesis)
 
     client, consumer = None, None
     kwargs = {
@@ -76,11 +78,12 @@ def provision_geowatch_consumer(topic, codec, max_tries=12, sleep_period=5, verb
     return (client, consumer)
 
 
-def provision_geowatch_producer(topic, codec, client=None, max_tries=12, sleep_period=5, verbose=True):
+def provision_geowatch_producer(topic, codec, client=None, max_tries=12, sleep_period=5, verbose=False):
     settings_general = load_settings_general()
-    settings_kafka = load_settings_kafka()
-    settings_kinesis = load_settings_kinesis()
-    print_settings(settings_general, settings_kafka, settings_kinesis)
+    if verbose:
+        settings_kafka = load_settings_kafka()
+        settings_kinesis = load_settings_kinesis()
+        print_settings(settings_general, settings_kafka, settings_kinesis)
 
     client, producer = None, None
     kwargs = {
