@@ -12,7 +12,7 @@ setup(
     url='https://github.com/geowatch/geowatch-django/',
     keywords='python gis geowatch',
     description='Django app for integration of GeoWatch',
-    long_description=open('README.md').read(),
+    long_description=open('README.rst').read(),
     download_url="https://github.com/geowatch/geowatch-django/zipball/master",
     #py_modules=["geowatchdjango"],
     packages=["geowatchdjango"],

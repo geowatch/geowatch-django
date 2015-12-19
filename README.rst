@@ -1,40 +1,58 @@
-GeoWatch Django App (geowatch-django)
-================
+GeoWatch Django (geowatch-django)
+==========
 
-## Description
+.. image:: https://travis-ci.org/geowatch/geowatch-django.png
+    :target: https://travis-ci.org/geowatch/geowatch-django
 
-Django app for integration of GeoWatch
+.. image:: https://img.shields.io/pypi/v/geowatch-django.svg
+    :target: https://pypi.python.org/pypi/geowatch-django
 
-## Installation
+.. image:: https://readthedocs.org/projects/geowatch-django/badge/?version=master
+        :target: http://geowatch-django.readthedocs.org/en/latest/
+        :alt: Master Documentation Status
 
-TBD
+Description
+-----------
 
-## Usage
+Django integration library for GeoWatch, a spatially-enabled distributed message broker.
+
+Installation
+------------
+
+.. code-block:: bash
+
+    pip install git+git://github.com/geowatch/geowatch-django.git@master
+
+
+Usage
+-----
 
 Add the following to INSTALLED_APPS in settings.py:
 
-```
-'geowatchdjango'
-```
+.. code-block:: bash
+
+    'geowatchdjango'
 
 Also, include the following new variables in settings.py:
 
-```
-AWS_ACCESS_KEY_ID = ""  # Used by AWS Kinesis
-AWS_SECRET_ACCESS_KEY = ""  # Used by AWS Kinesis
+.. code-block:: bash
 
-GEOWATCH_ENABLED = True  # or False
-GEOWATCH_STREAMING_BACKEND = "kinesis"  # or "kafka"
-GEOWATCH_TOPIC_PREFIX= "geowatch-"  # Assigned to GeoWatch Client and prefixs all topics sent to server
-GEOWATCH_KINESIS_REGION = "us-east-1"  # Used by AWS Kinesis
-GEOWATCH_HOST = "localhost:9092"  # Used by Apache Kafka
-```
+    AWS_ACCESS_KEY_ID = ""  # Used by AWS Kinesis
+    AWS_SECRET_ACCESS_KEY = ""  # Used by AWS Kinesis
 
-## Contributing
+    GEOWATCH_ENABLED = True  # or False
+    GEOWATCH_STREAMING_BACKEND = "kinesis"  # or "kafka"
+    GEOWATCH_TOPIC_PREFIX= "geowatch-"  # Assigned to GeoWatch Client and prefixs all topics sent to server
+    GEOWATCH_KINESIS_REGION = "us-east-1"  # Used by AWS Kinesis
+    GEOWATCH_HOST = "localhost:9092"  # Used by Apache Kafka
 
-We are currently accepting pull requests for this repository. Please provide a human-readable description with a pull request and update the README.md file as needed.
+Contributing
+------------
 
-## License
+We are currently accepting pull requests for this repository. Please provide a human-readable description with a pull request and update the README.rst file as needed.
+
+License
+-------
 
 Copyright (c) 2015, Patrick Dufour
 All rights reserved.
